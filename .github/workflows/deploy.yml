@@ -1,4 +1,4 @@
-name: Node.js CD
+name: Deploy
 
 on:
   push:
@@ -15,9 +15,8 @@ jobs:
           password: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
-            cd /var/www/bot
+            cd /var/www/bot_pontos
             git pull origin main
-            yarn
-            yarn build
+            sudo yarn
+            sudo yarn build
             sudo pm2 restart bot_whats
-            
