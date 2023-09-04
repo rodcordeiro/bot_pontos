@@ -11,5 +11,6 @@ export class BaseCommand {
   constructor(payload: { name: string; description: string; help?: string }) {
     this.name = payload.name;
     this.description = payload.description;
+    this.help = payload.help;
   }
 }

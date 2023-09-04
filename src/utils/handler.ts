@@ -1,4 +1,4 @@
-export class Handler<T = any> {
+export class Handler<T = object> {
   public data: T[];
   constructor(data: T[]) {
     this.data = data;

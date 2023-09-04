@@ -9,6 +9,7 @@ client.on(Events.QR_RECEIVED, async (qr: string) => {
 client.on(Events.READY, async () => {
   console.log("Client is ready!");
   await import("../cron");
+  await import("../commands");
 });
 
 client.on(Events.DISCONNECTED, async (reason: string) => {
