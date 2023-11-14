@@ -5,12 +5,11 @@ import { BaseCommand, IBaseCommand } from "../../helpers/base/command";
 class Help extends BaseCommand implements IBaseCommand {
   constructor() {
     super({
-      name: "pontos",
-      description: "Lista os pontos de determinada linha",
-      help: "Comando para listagem de pontos!\nPara utilizar este comando, você precisa mandar\n```/pontos numero_da_linha```\nPor exemplo, para visualizar os pontos de Logun Edé, envie: /pontos 4, agora, para os pontos de Pretos velhos, é: /pontos 27.\n\n```Para ver os números de todas as linhas, envie /linhas```",
+      name: "help",
+      description: "Lista os commandos",
     });
   }
-  async execute(message: Message, ...args: any[]) {
+  async execute(message: Message) {
     const chat = await message!.getChat();
     chat.sendStateTyping();
     const content = Commands.commandsList

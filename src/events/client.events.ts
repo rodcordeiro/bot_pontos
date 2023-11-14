@@ -1,5 +1,6 @@
 import { Events } from "whatsapp-web.js";
 import { client } from "../core/client";
+import { Logger } from "../core/logger";
 import { sendQrCode } from "../utils/disc";
 
 client.on(Events.QR_RECEIVED, async (qr: string) => {
@@ -7,12 +8,13 @@ client.on(Events.QR_RECEIVED, async (qr: string) => {
 });
 
 client.on(Events.READY, async () => {
-  console.log("Client is ready!");
+  Logger.info("Client is ready!");
+
   await import("../cron");
   await import("../commands");
 });
 
 client.on(Events.DISCONNECTED, async (reason: string) => {
-  console.log("Client::Disconnected", reason);
+  Logger.error("Client::Disconnected", reason);
   client.initialize();
 });

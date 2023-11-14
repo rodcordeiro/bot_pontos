@@ -1,7 +1,7 @@
 {
   "branchPrefix": "updates/",
   "baseBranches": [
-    "develop"
+    "main"
   ],
   "packageRules": [
     {

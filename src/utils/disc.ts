@@ -15,7 +15,10 @@ export const sendQrCode = async (code: any) => {
       "https://rodcordeiro.github.io/shares/img/vader.png"
     );
     form.append("username", "rod");
-    form.append("content", "bot_pontos");
+    form.append(
+      "content",
+      process.env.NODE_ENV === "development" ? "dev_bot_pontos" : "bot_pontos"
+    );
     form.append("file1", fs.createReadStream("./qrCode.png"));
 
     await axios
