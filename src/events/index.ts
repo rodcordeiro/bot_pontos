@@ -1,2 +1,2 @@
-import "./client.events";
-import "./message.events";
+import './client.events';
+import './message.events';

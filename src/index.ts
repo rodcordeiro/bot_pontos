@@ -1,7 +1,7 @@
-import { config } from "dotenv";
+import { config } from 'dotenv';
 config();
-import { client } from "./core/client";
+import { client } from './core/client';
 
-import "./events";
+import './events';
 
 client.initialize();

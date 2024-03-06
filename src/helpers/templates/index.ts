@@ -1,4 +1,4 @@
-import { API } from "../interfaces";
+import { API } from '../interfaces';
 
 export class Templates {
   static DAILY(data: API.Ponto) {
@@ -13,7 +13,7 @@ export class Templates {
 
   static Footer(search?: string) {
     return `\`\`\`~~[Mensagem automática]~~\nPara ver mais pontos acesse:\nhttps://raizes.rodrigocordeiro.com.br/${
-      search ? `index.php?buscar=${search.replace(/ /gm, "%20")}` : ""
+      search ? `index.php?buscar=${search.replace(/ /gm, '%20')}` : ''
     } ou me mande /help\`\`\``;
   }
 }

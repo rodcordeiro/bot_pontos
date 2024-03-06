@@ -1,11 +1,18 @@
-import Commands from "../commands";
-import { client } from "../core/client";
+import { Events } from 'whatsapp-web.js';
+import Commands from '../commands';
+import { client } from '../core/client';
 
-client.on("message", (message) => {
+client.on(Events.MESSAGE_RECEIVED, (message) => {
   if (message.fromMe) return;
-  console.log(message.body);
-  console.log(Commands.commandsList);
-  // const commands = new CommandHandler();
-  // commands.execute();
-  // console.log(commands.commandsList);
+  if (!message.body.startsWith('/')) return;
+  const content = message.body.split(' ');
+
+  const command = content[0].slice(1);
+  const cmd = Commands.commandsList.find(
+    (cmd) => cmd.name.toLowerCase() === command.toLowerCase(),
+  );
+  if (cmd) {
+    const args = content.slice(1);
+    cmd.command.execute(message, args);
+  }
 });
