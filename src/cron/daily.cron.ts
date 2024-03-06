@@ -17,9 +17,6 @@ const Action = async () => {
     const destiny = process.env.RAIZES_ID;
     const message = await client.sendMessage(destiny, content);
     if (selected.audio_link) {
-      console.debug(
-        `https://raizes.rodrigocordeiro.com.br/pontos/${selected.audio_link}`,
-      );
       const audio = await MessageMedia.fromUrl(
         `https://raizes.rodrigocordeiro.com.br/pontos/${selected.audio_link}`,
       );

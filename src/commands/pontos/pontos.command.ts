@@ -13,36 +13,44 @@ class Pontos extends BaseCommand implements IBaseCommand {
     });
   }
   async execute(message: Message | undefined, ...args: any[]) {
-    const chat = await message!.getChat();
-    chat.sendStateTyping();
-    if (args.includes('help')) {
-      await message!.reply(this.help || this.description);
-      return;
-    }
+    try {
+      const chat = await message!.getChat();
+      chat.sendStateTyping();
+      if (args.includes('help')) {
+        await message!.reply(this.help || this.description);
+        return;
+      }
 
-    let linha = args[0].toString();
-    console.log({ linha });
-    const { data } = await api.get<API.Ponto[]>(
-      `/pontos/list.php?line=${linha}`,
-    );
+      let linha = args[0].toString();
+      console.log({ linha });
+      const { data } = await api.get<API.Ponto[]>(
+        `/pontos/list.php?line=${linha}`,
+      );
 
-    const content = `*Pontos de ${data[0].line_description}*\n${data
-      .map(Templates.PONTO)
-      .join('-------------------------------\n')}\n${Templates.Footer(
-      data[0].line_description,
-    )}`;
-    const sentMessage = await message?.reply(content);
-    if (data.some((ponto) => ponto.audio_link)) {
-      data
-        .filter((ponto) => ponto.audio_link)
-        .map(async (ponto) => {
-          const audio = await MessageMedia.fromUrl(String(ponto.audio_link));
-          await sentMessage?.reply('', undefined, {
-            media: audio,
+      const content = `*Pontos de ${data[0].line_description}*\n${data
+        .map(Templates.PONTO)
+        .join('-------------------------------\n')}\n${Templates.Footer(
+        data[0].line_description,
+      )}`;
+      const sentMessage = await message?.reply(content);
+      if (data.some((ponto) => ponto.audio_link)) {
+        data
+          .filter((ponto) => ponto.audio_link)
+          .map(async (ponto) => {
+            const audio = await MessageMedia.fromUrl(
+              `https://raizes.rodrigocordeiro.com.br/pontos/${ponto.audio_link}`,
+            );
+            await sentMessage?.reply('', undefined, {
+              media: audio,
+            });
           });
-        });
+      }
+      return;
+    } catch (e) {
+      console.error(e);
+      await message!.reply('Não foi possível executar o commando!');
+      await message!.reply(this.help || this.description);
     }
-    return;
   }
 }
 
