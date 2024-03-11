@@ -1,6 +1,7 @@
 import { Events } from 'whatsapp-web.js';
 import Commands from '../commands';
 import { client } from '../core/client';
+import { Logger } from '../core/logger';
 
 client.on(Events.MESSAGE_RECEIVED, (message) => {
   if (message.fromMe) return;
@@ -12,6 +13,7 @@ client.on(Events.MESSAGE_RECEIVED, (message) => {
     (cmd) => cmd.name.toLowerCase() === command.toLowerCase(),
   );
   if (cmd) {
+    Logger.debug(`Executing: ${cmd.name}`);
     const args = content.slice(1);
     cmd.command.execute(message, args);
   }

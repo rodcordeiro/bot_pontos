@@ -1,8 +1,8 @@
 import WAWebJS from 'whatsapp-web.js';
 
 export type IBaseCommand = {
-  execute(message?: WAWebJS.Message): Promise<void>;
-  execute(message?: WAWebJS.Message, ...args: any[]): Promise<void>;
+  execute(message: WAWebJS.Message): Promise<void>;
+  execute(message: WAWebJS.Message, ...args: any[]): Promise<void>;
 };
 export abstract class BaseCommand implements IBaseCommand {
   public name: string;
