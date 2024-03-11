@@ -2,10 +2,10 @@ version: '3.8'
 
 services:
   bot:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    # image: rodcordeiro/bot_pontos:latest
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: rodcordeiro/bot_pontos:latest
     container_name: pontos_bot
     # restart: always
     ports:
