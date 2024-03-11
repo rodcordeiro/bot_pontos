@@ -7,7 +7,8 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "start:dev": "nodemon -e ts  --exec \"npm run start:prod\"",
-    "start:prod": "tsc -p . && node dist/index.js"
+    "start:prod": "tsc -p . && node dist/index.js",
+    "pretty": "prettier --ignore-path .eslintignore --write ."
   },
   "keywords": [],
   "author": "Rodrigo Cordeiro <rodrigomendoncca@gmail.com> (https://rodcordeiro.com.br/)",
@@ -26,6 +27,7 @@
     "@types/node-cron": "^3.0.8",
     "@types/qrcode": "^1.5.0",
     "nodemon": "^2.0.22",
+    "prettier": "^3.2.5",
     "tsx": "^3.12.7",
     "typescript": "^5.0.4"
   }

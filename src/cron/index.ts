@@ -1,1 +1,1 @@
-import "./daily.cron";
+import './daily.cron';

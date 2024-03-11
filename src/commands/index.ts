@@ -1,8 +1,8 @@
-import Pontos from "./pontos/pontos.command";
-import Help from "./help/help.command";
-import Linhas from "./linhas/linhas.command";
+import Pontos from './pontos/pontos.command';
+import Help from './help/help.command';
+import Linhas from './linhas/linhas.command';
 
-import { Commands } from "../core/commands";
+import { Commands } from '../core/commands';
 
 const commands = new Commands();
 
