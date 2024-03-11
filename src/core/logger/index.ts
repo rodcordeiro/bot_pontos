@@ -3,7 +3,7 @@ import pino from "pino";
 const Logger = pino({
   transport: {
     targets:
-      process.env.NODE_ENV === "development"
+      process.env.NODE_ENV === "dev"
         ? [
             {
               level: "info",

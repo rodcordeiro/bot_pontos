@@ -11,7 +11,7 @@ client.on(Events.READY, async () => {
   Logger.info("Client is ready!");
 
   await import("../cron");
-  await import("../commands");
+  // await import("../commands");
 });
 
 client.on(Events.DISCONNECTED, async (reason: string) => {

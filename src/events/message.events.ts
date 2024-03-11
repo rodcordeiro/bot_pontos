@@ -1,20 +1,20 @@
-import Commands from "../commands";
-import { Logger } from "../core/logger";
-import { client } from "../core/client";
+import { Events } from 'whatsapp-web.js';
+import Commands from '../commands';
+import { client } from '../core/client';
+import { Logger } from '../core/logger';
 
-client.on("message", (message) => {
+client.on(Events.MESSAGE_RECEIVED, (message) => {
   if (message.fromMe) return;
-  Logger.debug(message.description, message.type, message.body, message.from);
+  if (!message.body.startsWith('/')) return;
+  const content = message.body.split(' ');
 
-  if (message.body.startsWith("/")) {
-    const commandName = message.body.slice(1).trim().split(" ").shift();
-    Logger.debug(`Executing: ${commandName}`);
-    const command = Commands.get(commandName!.toLowerCase());
-    try {
-      command.execute(message);
-    } catch (err) {
-      Logger.error({ ...(err as Error), commandName });
-      message.reply("Comando não encontrado ou não existe!");
-    }
+  const command = content[0].slice(1);
+  const cmd = Commands.commandsList.find(
+    (cmd) => cmd.name.toLowerCase() === command.toLowerCase(),
+  );
+  if (cmd) {
+    Logger.debug(`Executing: ${cmd.name}`);
+    const args = content.slice(1);
+    cmd.command.execute(message, args);
   }
 });

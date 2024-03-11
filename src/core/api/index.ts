@@ -2,8 +2,8 @@ import axios, { AxiosResponse } from "axios";
 import { Logger } from "../logger";
 
 const api = axios.create({
-  baseURL: "https://raizes.rodrigocordeiro.com.br/api",
-  responseType: "json",
+  baseURL: 'https://raizes.rodrigocordeiro.com.br/api',
+  responseType: 'json',
 });
 
 api.interceptors.response.use(
