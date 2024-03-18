@@ -14,9 +14,10 @@ services:
       - .env
     networks:
       - bots
-    volume:
-      - ./:/bot
-
+    logging:
+      options:
+        max-size: "2m"
+        max-file: "3"
 networks:
   bots:
     driver: bridge
