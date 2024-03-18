@@ -8,7 +8,7 @@ import { Templates } from '../helpers/templates';
 
 const DAILY_CRON = '0 9 * * *';
 
-const Action = async () => {
+const SendDailyMusic = async () => {
   try {
     const { data } = await api.get<API.APIResponse>('/');
     const handler = new Handler(data.pontos);
@@ -29,9 +29,9 @@ const Action = async () => {
   }
 };
 
-schedule(DAILY_CRON, Action, {
+schedule(DAILY_CRON, SendDailyMusic, {
   name: 'daily',
-  runOnInit: true,
+  runOnInit: process.env.NODE_ENV === 'dev',
   timezone: 'America/Sao_Paulo',
   scheduled: true,
 });

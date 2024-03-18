@@ -14,12 +14,12 @@ export const sendQrCode = async (code: any) => {
       'avatar_url',
       'https://rodcordeiro.github.io/shares/img/vader.png',
     );
-    form.append("username", "rod");
+    form.append('username', 'rod');
     form.append(
-      "content",
-      process.env.NODE_ENV === "dev" ? "dev_bot_pontos" : "bot_pontos"
+      'content',
+      process.env.NODE_ENV === 'dev' ? 'dev_bot_pontos' : 'bot_pontos',
     );
-    form.append("file1", fs.createReadStream("./qrCode.png"));
+    form.append('file1', fs.createReadStream('./qrCode.png'));
 
     await axios
       .post(process.env.DISCORD_WEBHOOK, form)
