@@ -10,6 +10,7 @@ RUN yarn global add pm2
 
 COPY package*.json ./
 COPY tsconfig.json ./
+COPY ecosystem.config.js ./
 
 RUN yarn
 
