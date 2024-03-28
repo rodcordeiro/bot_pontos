@@ -1,13 +1,13 @@
 {
-  "name": "fuckoff",
+  "name": "pontos",
   "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
     "start:dev": "nodemon -e ts  --exec \"npm run start:prod\"",
-    "start:prod": "tsc -p . && node dist/index.js",
+    "start:preview": "tsc -p . && node dist/index.js",
+    "start:prod": " node dist/index.js",
     "pretty": "prettier --ignore-path .eslintignore --write ."
   },
   "keywords": [],

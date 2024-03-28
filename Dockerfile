@@ -16,6 +16,8 @@ RUN yarn
 
 COPY . .
 
+RUN yarn build
+
 EXPOSE 8080
 
 CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
