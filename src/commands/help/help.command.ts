@@ -1,6 +1,6 @@
-import { Message } from 'whatsapp-web.js';
+import { type Message } from 'whatsapp-web.js';
 import Commands from '../index';
-import { BaseCommand, IBaseCommand } from '../../helpers/base/command';
+import { BaseCommand, type IBaseCommand } from '../../helpers/base/command';
 
 class Help extends BaseCommand implements IBaseCommand {
   constructor() {
@@ -9,9 +9,11 @@ class Help extends BaseCommand implements IBaseCommand {
       description: 'Exibe a mensagem de ajuda dos comandos',
     });
   }
-  async execute(message: Message, ..._args: any[]) {
-    const chat = await message!.getChat();
-    chat.sendStateTyping();
+
+  async execute(message: Message, ..._args: unknown[]): Promise<void> {
+    const chat = await message.getChat();
+    await chat.sendStateTyping();
+
     const content = Commands.commandsList
       .filter((command) => command.command.help !== undefined)
       .map((command) => `*/${command.name}:* ${command.command.help}`)

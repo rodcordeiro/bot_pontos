@@ -1,13 +1,16 @@
 {
   "name": "pontos",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "prebuild": "npm run format",
     "build": "tsc",
-    "start:dev": "nodemon -e ts  --exec \"npm run start:prod\"",
+    "start:dev": "nodemon -e ts  --exec \"npm run start:preview\"",
     "start:preview": "tsc -p . && node dist/index.js",
     "start:prod": " node dist/index.js",
+    "format": "npm run lint && npm run pretty",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --ignore-path .eslintignore --fix",
     "pretty": "prettier --ignore-path .eslintignore --write ."
   },
   "keywords": [],
@@ -26,9 +29,16 @@
     "@types/node": "^20.1.2",
     "@types/node-cron": "^3.0.8",
     "@types/qrcode": "^1.5.0",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
     "nodemon": "^2.0.22",
     "prettier": "^3.2.5",
     "tsx": "^3.12.7",
-    "typescript": "^5.0.4"
+    "typescript": "*"
   }
 }

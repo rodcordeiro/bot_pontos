@@ -2,7 +2,7 @@ import { MessageMedia } from 'whatsapp-web.js';
 import { schedule } from 'node-cron';
 import { api } from '../core/api';
 import { client } from '../core/client';
-import { API } from '../helpers/interfaces';
+import { type API } from '../helpers/interfaces';
 import { Handler } from '../utils/handler';
 import { Templates } from '../helpers/templates';
 

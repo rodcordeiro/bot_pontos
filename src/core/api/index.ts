@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { type AxiosResponse } from 'axios';
 import { Logger } from '../logger';
 
 const api = axios.create({
@@ -7,13 +7,13 @@ const api = axios.create({
 });
 
 api.interceptors.response.use(
-  (res: AxiosResponse) => {
+  async (res: AxiosResponse) => {
     Logger.debug(`[API] ${res.config.method} ${res.status} ${res.config.url}`);
-    return Promise.resolve(res);
+    return await Promise.resolve(res);
   },
-  (res: AxiosResponse) => {
+  async (res: AxiosResponse) => {
     Logger.debug(`[API] ${res.config.method} ${res.status} ${res.config.url}`);
-    return Promise.reject(res);
+    return await Promise.reject(res);
   },
 );
 

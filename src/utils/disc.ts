@@ -3,7 +3,7 @@ import formData from 'form-data';
 import fs from 'fs';
 import qr from 'qrcode';
 
-export const sendQrCode = async (code: any) => {
+export const sendQrCode = async (code: string) => {
   const form = new formData();
 
   qr.toFile('./qrCode.png', code, async (err) => {
@@ -12,9 +12,9 @@ export const sendQrCode = async (code: any) => {
     }
     form.append(
       'avatar_url',
-      'https://rodcordeiro.github.io/shares/img/vader.png',
+      'https://rodcordeiro.github.io/shares/img/octocat.png',
     );
-    form.append('username', 'rod');
+    form.append('username', 'RodRobo');
     form.append(
       'content',
       process.env.NODE_ENV === 'dev' ? 'dev_bot_pontos' : 'bot_pontos',

@@ -1,8 +1,8 @@
-import { Message, MessageMedia } from 'whatsapp-web.js';
-import { BaseCommand, IBaseCommand } from '../../helpers/base/command';
+import { type Message, MessageMedia } from 'whatsapp-web.js';
+import { BaseCommand, type IBaseCommand } from '../../helpers/base/command';
 import { Templates } from '../../helpers/templates';
 import { api } from '../../core/api';
-import { API } from '../../helpers/interfaces';
+import { type API } from '../../helpers/interfaces';
 
 class Pontos extends BaseCommand implements IBaseCommand {
   constructor() {
@@ -12,7 +12,8 @@ class Pontos extends BaseCommand implements IBaseCommand {
       help: 'Comando para listagem de pontos!\nPara utilizar este comando, você precisa mandar\n```/pontos numero_da_linha```\nPor exemplo, para visualizar os pontos de Logun Edé, envie: /pontos 4, agora, para os pontos de Pretos velhos, é: /pontos 27.\n\n```Para ver os números de todas as linhas, envie /linhas```',
     });
   }
-  async execute(message: Message | undefined, ...args: any[]) {
+
+  async execute(message: Message | undefined, ...args: unknown[]) {
     try {
       const chat = await message!.getChat();
       chat.sendStateTyping();
@@ -21,7 +22,7 @@ class Pontos extends BaseCommand implements IBaseCommand {
         return;
       }
 
-      let linha = args[0].toString();
+      const linha = (args as string[])[0].toString();
       console.log({ linha });
       const { data } = await api.get<API.Ponto[]>(
         `/pontos/list.php?line=${linha}`,
@@ -45,7 +46,6 @@ class Pontos extends BaseCommand implements IBaseCommand {
             });
           });
       }
-      return;
     } catch (e) {
       console.error(e);
       await message!.reply('Não foi possível executar o commando!');

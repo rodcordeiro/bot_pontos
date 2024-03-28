@@ -1,10 +1,10 @@
 export namespace API {
-  export type APIResponse = {
+  export interface APIResponse {
     linhas: Linha[];
     pontos: Ponto[];
-  };
+  }
 
-  export type Ponto = {
+  export interface Ponto {
     id: string;
     rythm_id: string;
     rythm_description: string;
@@ -13,11 +13,11 @@ export namespace API {
     tipo: string;
     ponto: string;
     audio_link?: string;
-  };
+  }
 
-  export type Linha = {
+  export interface Linha {
     id: string;
     linha: string;
     categoria: string;
-  };
+  }
 }

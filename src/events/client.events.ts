@@ -14,6 +14,11 @@ client.on(Events.READY, async () => {
   // await import("../commands");
 });
 
+client.on(Events.AUTHENTICATION_FAILURE, (reason: string) => {
+  Logger.error(reason);
+  process.exit(1);
+});
+
 client.on(Events.DISCONNECTED, async (reason: string) => {
   Logger.error('Client::Disconnected', reason);
   client.initialize();

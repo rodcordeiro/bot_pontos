@@ -1,4 +1,4 @@
-import { API } from '../interfaces';
+import { type API } from '../interfaces';
 
 export class Templates {
   static DAILY(data: API.Ponto) {

@@ -1,7 +1,7 @@
-import { Message } from 'whatsapp-web.js';
-import { BaseCommand, IBaseCommand } from '../../helpers/base/command';
+import { type Message } from 'whatsapp-web.js';
+import { BaseCommand, type IBaseCommand } from '../../helpers/base/command';
 import { api } from '../../core/api';
-import { API } from '../../helpers/interfaces';
+import { type API } from '../../helpers/interfaces';
 import { Templates } from '../../helpers/templates';
 
 class Linhas extends BaseCommand implements IBaseCommand {
@@ -12,8 +12,9 @@ class Linhas extends BaseCommand implements IBaseCommand {
       help: 'Lista as linhas',
     });
   }
+
   async execute(message: Message) {
-    const chat = await message!.getChat();
+    const chat = await message.getChat();
     chat.sendStateTyping();
 
     const { data } = await api.get<API.APIResponse>('/');
@@ -22,8 +23,6 @@ class Linhas extends BaseCommand implements IBaseCommand {
       .map(({ id, linha }) => Templates.MENU(id, linha))
       .join('\n')}`;
     await message?.reply(content);
-
-    return;
   }
 }
 
