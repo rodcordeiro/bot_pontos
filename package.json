@@ -17,7 +17,7 @@
   "author": "Rodrigo Cordeiro <rodrigomendoncca@gmail.com> (https://rodcordeiro.com.br/)",
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.4.0",
+    "axios": "^1.7.2",
     "dotenv": "^16.3.1",
     "node-cron": "^3.0.2",
     "pino": "^8.16.1",
